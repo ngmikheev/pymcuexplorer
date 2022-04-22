@@ -1,6 +1,7 @@
 from .utils import check_bit_width
 from .field import Field
 
+
 class Register:
     def __init__(self, register_dict: dict):
         self.__doc__ = "{} - {}\n".format(
@@ -20,7 +21,7 @@ class Register:
                     )
             else:
                 setattr(self, k, v)
-        
+
     def get_fileds(self):
         fields = []
         for attr in self.__dict__.values():
@@ -34,7 +35,7 @@ class Register:
             return block_reg_getter(self.address_offset)
 
         def read_bits(bit_mask):
-            return self.read_value() & bit_mask 
+            return self.read_value() & bit_mask
 
         def write_value(value: int):
             check_bit_width(value, self.size)

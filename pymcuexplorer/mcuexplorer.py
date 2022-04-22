@@ -2,6 +2,7 @@ from pyocd.debug.svd.parser import SVDParser
 from pyocd.debug.svd.loader import SVDFile
 from .peripheral import Peripheral
 
+
 class MCUExplorer:
     def __init__(self, mcu_dict: dict):
         self.__doc__ = "{} MCU\n".format(
@@ -28,7 +29,7 @@ class MCUExplorer:
                 peripherals.append(attr)
 
         return peripherals
-    
+
     def assign_setter_and_getter(self, mem_setter, mem_getter):
         for p in self.get_peripherals():
             p.assign_setter_and_getter(mem_setter, mem_getter)

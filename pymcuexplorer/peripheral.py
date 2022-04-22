@@ -1,5 +1,6 @@
 from .register import Register
 
+
 class Peripheral:
     def __init__(self, peripheral_dict: dict):
         self.__doc__ = "{} - {}\n".format(
@@ -34,6 +35,6 @@ class Peripheral:
 
         def write_register(register_address_offset: int, value: int):
             word_setter(self.base_address + register_address_offset, value)
-                
+
         for r in self.get_registers():
             r.assign_setter_and_getter(write_register, read_register)
