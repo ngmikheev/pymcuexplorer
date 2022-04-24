@@ -15,7 +15,9 @@ class Field:
             return
 
         def read_field():
-            return (reg_getter() >> self.bit_offset) & self.bit_width
+            reg_value = reg_getter()
+            f = (reg_value >> self.bit_offset) & ((1 << self.bit_width) - 1)
+            return f
 
         setattr(self, "read_field", read_field)
 
@@ -25,7 +27,7 @@ class Field:
         def write_field(value: int):
             check_bit_width(value, self.bit_width)
             reg_value = reg_getter()
-            reg_value &= ~(self.bit_width << self.bit_offset)
+            reg_value &= ~(((1 << self.bit_width) - 1) << self.bit_offset)
             reg_value |= (value << self.bit_offset)
             reg_setter(reg_value)
 
